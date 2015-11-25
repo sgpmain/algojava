@@ -46,8 +46,6 @@ public class ScheduleJobsTest {
 
     @Test
     public void givenJobListComputeCompletionCost() throws Exception {
-
-
         // when
         final long completionCost = algo.compute(jobsSupplier.get());
         // then
