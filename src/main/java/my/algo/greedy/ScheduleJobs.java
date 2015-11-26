@@ -1,6 +1,5 @@
 package my.algo.greedy;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.BinaryOperator;
@@ -43,6 +42,7 @@ public class ScheduleJobs {
         RATIO_WEIGHT_LENGTH("Ratio weight/length", ratioWghtLenRankFnc()),
         DIFF_WEIGHT_LENGTH("Difference weight-length", diffWhtLenRankFnc());
 
+
         private static Function<Job, Double> ratioWghtLenRankFnc() {
             return job -> {
                 final long length = job.getLength();
@@ -60,8 +60,9 @@ public class ScheduleJobs {
                         job1.getWeight() + (job2.getWeight() * (job1.getLength() + job2.getLength())),
                         job1.getLength() + job2.getLength());
 
-        private static final Function<Function<Job, Double>, Comparator<? super Job>> compareFnc =
-                rankFnc -> (job1, job2) -> compareJobsRanked(job1, job2, rankFnc);
+        private static Comparator<? super Job> jobComparator(Function<Job, Double> rankJobFnc) {
+            return (job1, job2) -> compareJobsRanked(job1, job2, rankJobFnc);
+        }
 
         private static int compareJobsRanked(Job job1, Job job2, Function<Job, Double> rankFnc) {
             double job1Rank = rankFnc.apply(job1);
@@ -72,11 +73,11 @@ public class ScheduleJobs {
         }
 
         private String name;
-        private Function<Job, Double> rankJobFnc;
+        private final Comparator<? super Job> jobComparator;
 
         Algo(String name, Function<Job, Double> rankJobFnc) {
             this.name = name;
-            this.rankJobFnc = rankJobFnc;
+            jobComparator = jobComparator(rankJobFnc);
         }
 
         public String getName() {
@@ -84,8 +85,8 @@ public class ScheduleJobs {
         }
 
         public long compute(List<Job> jobs) {
-            Collections.sort(jobs, compareFnc.apply(rankJobFnc));
-            return jobs.stream().reduce(new Job(0, 0), cumJobFnc).getWeight();
+            return jobs.stream().sorted(jobComparator).
+                    reduce(new Job(0, 0), cumJobFnc).getWeight();
         }
 
     }
