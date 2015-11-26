@@ -47,7 +47,7 @@ public class ScheduleJobs {
             return job -> {
                 final long length = job.getLength();
                 return (length == 0) ? Double.POSITIVE_INFINITY :
-                        job.getWeight() / (double) length;
+                        (job.getWeight() / (double) length);
             };
         }
 
