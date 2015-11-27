@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 import static java.lang.Boolean.TRUE;
 
@@ -46,11 +47,23 @@ public class ScheduleJobsIntegrationTest {
     }
 
     @Test
-    public void testScheduleJobsCase() throws Exception {
+    public void testScheduleJobsStreamCase() throws Exception {
 
         // given
         Boolean headLine = TRUE;
-        List<Job> jobs = DataUtils.readInpData(fName, STR_TO_JOB_FUNCTION, headLine);
+        Stream<Job> jobs = DataUtils.readInputtoStream(fName, STR_TO_JOB_FUNCTION, headLine);
+        // when
+        final long completionCost = algo.compute(jobs);
+        // then
+        Assert.assertEquals(expectedCompletionCost, completionCost);
+    }
+
+    @Test
+    public void testScheduleJobsListCase() throws Exception {
+
+        // given
+        Boolean headLine = TRUE;
+        List<Job> jobs = DataUtils.readInputToList(fName, STR_TO_JOB_FUNCTION, headLine);
         // when
         final long completionCost = algo.compute(jobs);
         // then

@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 /**
  * In this programming problem and the next you'll code up the greedy algorithms
@@ -85,7 +86,11 @@ public class ScheduleJobs {
         }
 
         public long compute(List<Job> jobs) {
-            return jobs.stream().sorted(jobComparator).
+            return compute(jobs.stream());
+        }
+
+        public long compute(Stream<Job> jobs) {
+            return jobs.sorted(jobComparator).
                     reduce(new Job(0, 0), cumJobFnc).getWeight();
         }
 

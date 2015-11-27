@@ -11,22 +11,23 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import static java.util.Collections.EMPTY_LIST;
-import static my.algo.greedy.JobTestHelper.jobsToDifferentiateAlgos;
-import static my.algo.greedy.JobTestHelper.noJobs;
-import static my.algo.greedy.JobTestHelper.oneJobList;
+import static my.algo.greedy.JobTestHelper.jobsToDifferentiateAlgosStream;
+import static my.algo.greedy.JobTestHelper.noJobsStream;
+import static my.algo.greedy.JobTestHelper.oneJobStream;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(Parameterized.class)
-public class ScheduleJobsTest {
+public class ScheduleJobsStreamTest {
 
     private final Algo algo;
-    private final Supplier<List<Job>> jobsSupplier;
+    private final Supplier<Stream<Job>> jobsSupplier;
     private final long expectedCompletionCost;
 
-    public ScheduleJobsTest(Algo algo, Supplier<List<Job>> jobsSupplier, long expectedCompletionCost) {
+    public ScheduleJobsStreamTest(Algo algo, Supplier<Stream<Job>> jobsSupplier, long expectedCompletionCost) {
         this.algo = algo;
         this.jobsSupplier = jobsSupplier;
         this.expectedCompletionCost = expectedCompletionCost;
@@ -36,12 +37,12 @@ public class ScheduleJobsTest {
     @Parameterized.Parameters(name = "{index}: {0}}")
     public static Collection<Object[]> testCases1() {
         return Arrays.asList(new Object[][]{
-                {Algo.DIFF_WEIGHT_LENGTH, noJobs, 0L},
-                {Algo.RATIO_WEIGHT_LENGTH, noJobs, 0L},
-                {Algo.DIFF_WEIGHT_LENGTH, jobsToDifferentiateAlgos, 23L},
-                {Algo.RATIO_WEIGHT_LENGTH, jobsToDifferentiateAlgos, 22L},
-                {Algo.DIFF_WEIGHT_LENGTH, oneJobList, 4L},
-                {Algo.RATIO_WEIGHT_LENGTH, oneJobList, 4L}
+                {Algo.DIFF_WEIGHT_LENGTH, noJobsStream, 0L},
+                {Algo.RATIO_WEIGHT_LENGTH, noJobsStream, 0L},
+                {Algo.DIFF_WEIGHT_LENGTH, jobsToDifferentiateAlgosStream, 23L},
+                {Algo.RATIO_WEIGHT_LENGTH, jobsToDifferentiateAlgosStream, 22L},
+                {Algo.DIFF_WEIGHT_LENGTH, oneJobStream, 4L},
+                {Algo.RATIO_WEIGHT_LENGTH, oneJobStream, 4L}
         });
     }
 
@@ -52,6 +53,4 @@ public class ScheduleJobsTest {
         // then
         Assert.assertEquals(expectedCompletionCost, completionCost);
     }
-
-
 }
