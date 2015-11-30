@@ -1,10 +1,14 @@
 package my.algo.greedy;
 
+import com.google.common.base.Preconditions;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Stream;
+
+import static com.google.common.base.Preconditions.*;
 
 /**
  * In this programming problem and the next you'll code up the greedy algorithms
@@ -90,6 +94,7 @@ public class ScheduleJobs {
         }
 
         public long compute(Stream<Job> jobs) {
+            checkNotNull(jobs);
             return jobs.sorted(jobComparator).
                     reduce(new Job(0, 0), cumJobFnc).getWeight();
         }

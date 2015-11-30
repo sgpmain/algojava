@@ -13,9 +13,8 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import static java.util.Collections.EMPTY_LIST;
-import static my.algo.greedy.JobTestHelper.jobsToDifferentiateAlgos;
-import static my.algo.greedy.JobTestHelper.noJobs;
-import static my.algo.greedy.JobTestHelper.oneJobList;
+import static my.algo.greedy.JobTestHelper.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -36,6 +35,8 @@ public class ScheduleJobsTest {
     @Parameterized.Parameters(name = "{index}: {0}}")
     public static Collection<Object[]> testCases1() {
         return Arrays.asList(new Object[][]{
+                {Algo.DIFF_WEIGHT_LENGTH, nullJobs, 0L},
+                {Algo.RATIO_WEIGHT_LENGTH, nullJobs, 0L},
                 {Algo.DIFF_WEIGHT_LENGTH, noJobs, 0L},
                 {Algo.RATIO_WEIGHT_LENGTH, noJobs, 0L},
                 {Algo.DIFF_WEIGHT_LENGTH, jobsToDifferentiateAlgos, 23L},
@@ -50,7 +51,7 @@ public class ScheduleJobsTest {
         // when
         final long completionCost = algo.compute(jobsSupplier.get());
         // then
-        Assert.assertEquals(expectedCompletionCost, completionCost);
+        assertEquals(expectedCompletionCost, completionCost);
     }
 
 

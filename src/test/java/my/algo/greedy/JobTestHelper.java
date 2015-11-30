@@ -14,6 +14,8 @@ public class JobTestHelper {
     private JobTestHelper() {
     }
 
+    public static Supplier<List<Job>> nullJobs = () -> null;
+    public static Supplier<Stream<Job>> nullJobsStream = () -> null;
     public static Supplier<List<Job>> noJobs = () -> EMPTY_LIST;
     public static Supplier<Stream<Job>> noJobsStream = Stream::empty;
     public static Supplier<List<Job>> jobsToDifferentiateAlgos = () -> {

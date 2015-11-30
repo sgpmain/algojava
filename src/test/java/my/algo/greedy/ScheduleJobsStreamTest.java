@@ -17,6 +17,7 @@ import static java.util.Collections.EMPTY_LIST;
 import static my.algo.greedy.JobTestHelper.jobsToDifferentiateAlgosStream;
 import static my.algo.greedy.JobTestHelper.noJobsStream;
 import static my.algo.greedy.JobTestHelper.oneJobStream;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -47,10 +48,10 @@ public class ScheduleJobsStreamTest {
     }
 
     @Test
-    public void givenJobListComputeCompletionCost() throws Exception {
+    public void givenJobStreamComputeCompletionCost() throws Exception {
         // when
         final long completionCost = algo.compute(jobsSupplier.get());
         // then
-        Assert.assertEquals(expectedCompletionCost, completionCost);
+        assertEquals(expectedCompletionCost, completionCost);
     }
 }
