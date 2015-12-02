@@ -11,7 +11,6 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static my.algo.greedy.JobTestHelper.*;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 @RunWith(Parameterized.class)
@@ -27,10 +26,10 @@ public class ScheduleJobsStreamForNullTest {
 
 
     @Parameterized.Parameters(name = "{index}: {0}}")
-    public static Collection<Object[]> testCases1() {
+    public static Collection<Object[]> testCases() {
         return Arrays.asList(new Object[][]{
-                {Algo.DIFF_WEIGHT_LENGTH, nullJobsStream},
-                {Algo.RATIO_WEIGHT_LENGTH, nullJobsStream},
+                {Algo.DIFF_WEIGHT_LENGTH, NULL_JOBS_STREAM},
+                {Algo.RATIO_WEIGHT_LENGTH, NULL_JOBS_STREAM},
         });
     }
 

@@ -1,8 +1,6 @@
 package my.algo.greedy;
 
-import com.google.common.collect.Lists;
 import my.algo.greedy.ScheduleJobs.Algo;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -12,11 +10,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Supplier;
 
-import static java.util.Collections.EMPTY_LIST;
 import static my.algo.greedy.JobTestHelper.*;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 @RunWith(Parameterized.class)
 public class ScheduleJobsTest {
@@ -33,16 +28,14 @@ public class ScheduleJobsTest {
 
 
     @Parameterized.Parameters(name = "{index}: {0}}")
-    public static Collection<Object[]> testCases1() {
+    public static Collection<Object[]> testCases() {
         return Arrays.asList(new Object[][]{
-                {Algo.DIFF_WEIGHT_LENGTH, nullJobs, 0L},
-                {Algo.RATIO_WEIGHT_LENGTH, nullJobs, 0L},
-                {Algo.DIFF_WEIGHT_LENGTH, noJobs, 0L},
-                {Algo.RATIO_WEIGHT_LENGTH, noJobs, 0L},
-                {Algo.DIFF_WEIGHT_LENGTH, jobsToDifferentiateAlgos, 23L},
-                {Algo.RATIO_WEIGHT_LENGTH, jobsToDifferentiateAlgos, 22L},
-                {Algo.DIFF_WEIGHT_LENGTH, oneJobList, 4L},
-                {Algo.RATIO_WEIGHT_LENGTH, oneJobList, 4L}
+                {Algo.DIFF_WEIGHT_LENGTH, NO_JOBS, 0L},
+                {Algo.RATIO_WEIGHT_LENGTH, NO_JOBS, 0L},
+                {Algo.DIFF_WEIGHT_LENGTH, JOBS_TO_DIFFERENTIATE_ALGOS, 23L},
+                {Algo.RATIO_WEIGHT_LENGTH, JOBS_TO_DIFFERENTIATE_ALGOS, 22L},
+                {Algo.DIFF_WEIGHT_LENGTH, ONE_JOB_LIST, 4L},
+                {Algo.RATIO_WEIGHT_LENGTH, ONE_JOB_LIST, 4L}
         });
     }
 

@@ -1,7 +1,6 @@
 package my.algo.greedy;
 
 import my.algo.greedy.ScheduleJobs.Algo;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -27,10 +26,10 @@ public class ScheduleJobsForNullTest {
 
 
     @Parameterized.Parameters(name = "{index}: {0}}")
-    public static Collection<Object[]> testCases1() {
+    public static Collection<Object[]> testCases() {
         return Arrays.asList(new Object[][]{
-                {Algo.DIFF_WEIGHT_LENGTH, nullJobs},
-                {Algo.RATIO_WEIGHT_LENGTH, nullJobs},
+                {Algo.DIFF_WEIGHT_LENGTH, NULL_JOBS},
+                {Algo.RATIO_WEIGHT_LENGTH, NULL_JOBS},
         });
     }
 

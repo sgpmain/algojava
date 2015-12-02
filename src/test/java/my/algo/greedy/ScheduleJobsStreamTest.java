@@ -1,25 +1,19 @@
 package my.algo.greedy;
 
-import com.google.common.collect.Lists;
 import my.algo.greedy.ScheduleJobs.Algo;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-import static java.util.Collections.EMPTY_LIST;
-import static my.algo.greedy.JobTestHelper.jobsToDifferentiateAlgosStream;
-import static my.algo.greedy.JobTestHelper.noJobsStream;
-import static my.algo.greedy.JobTestHelper.oneJobStream;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static my.algo.greedy.JobTestHelper.NO_JOBS_STREAM;
+import static my.algo.greedy.JobTestHelper.JOBS_TO_DIFFERENTIATE_ALGOS_STREAM;
+import static my.algo.greedy.JobTestHelper.ONE_JOB_STREAM;
 
 @RunWith(Parameterized.class)
 public class ScheduleJobsStreamTest {
@@ -36,14 +30,14 @@ public class ScheduleJobsStreamTest {
 
 
     @Parameterized.Parameters(name = "{index}: {0}}")
-    public static Collection<Object[]> testCases1() {
+    public static Collection<Object[]> testCases() {
         return Arrays.asList(new Object[][]{
-                {Algo.DIFF_WEIGHT_LENGTH, noJobsStream, 0L},
-                {Algo.RATIO_WEIGHT_LENGTH, noJobsStream, 0L},
-                {Algo.DIFF_WEIGHT_LENGTH, jobsToDifferentiateAlgosStream, 23L},
-                {Algo.RATIO_WEIGHT_LENGTH, jobsToDifferentiateAlgosStream, 22L},
-                {Algo.DIFF_WEIGHT_LENGTH, oneJobStream, 4L},
-                {Algo.RATIO_WEIGHT_LENGTH, oneJobStream, 4L}
+                {Algo.DIFF_WEIGHT_LENGTH, NO_JOBS_STREAM, 0L},
+                {Algo.RATIO_WEIGHT_LENGTH, NO_JOBS_STREAM, 0L},
+                {Algo.DIFF_WEIGHT_LENGTH, JOBS_TO_DIFFERENTIATE_ALGOS_STREAM, 23L},
+                {Algo.RATIO_WEIGHT_LENGTH, JOBS_TO_DIFFERENTIATE_ALGOS_STREAM, 22L},
+                {Algo.DIFF_WEIGHT_LENGTH, ONE_JOB_STREAM, 4L},
+                {Algo.RATIO_WEIGHT_LENGTH, ONE_JOB_STREAM, 4L}
         });
     }
 
