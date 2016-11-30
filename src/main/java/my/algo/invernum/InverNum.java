@@ -31,7 +31,7 @@ public class InverNum {
         }
 
         public long compute(List<Preference> prefs) {
-            if(prefs.size() == 0) return 0L;
+            if (prefs.size() == 0) return 0L;
             return compute(prefs.stream());
         }
 
@@ -39,7 +39,7 @@ public class InverNum {
             checkNotNull(prefs);
             //implement algo
             long[] prefsArr = prefs.mapToLong(Preference::getValue).toArray();
-            if(prefsArr.length == 0) return 0L;
+            if (prefsArr.length == 0) return 0L;
             return computeInRange(0, prefsArr.length - 1, prefsArr, new long[prefsArr.length]);
         }
 
@@ -70,7 +70,7 @@ public class InverNum {
             return invCount;
         }
 
-        private int pivot(int from, int to) {
+        private static int pivot(int from, int to) {
             return (to + from) >>> 1;
         }
     }
