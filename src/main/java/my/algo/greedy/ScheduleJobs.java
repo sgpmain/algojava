@@ -2,6 +2,8 @@ package my.algo.greedy;
 
 import com.google.common.base.Preconditions;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.BinaryOperator;
@@ -96,7 +98,7 @@ public class ScheduleJobs {
         public long compute(Stream<Job> jobs) {
             checkNotNull(jobs);
             return jobs.sorted(jobComparator).
-                    reduce(new Job(0, 0), cumJobFnc).getWeight();
+                    reduce(Job.ZERO, cumJobFnc).getWeight();
         }
 
     }

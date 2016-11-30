@@ -4,6 +4,7 @@ import static com.google.common.base.MoreObjects.toStringHelper;
 
 public class Job {
 
+    public static final Job ZERO = new Job(0, 0);
     private final long weight;
     private final long length;
 

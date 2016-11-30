@@ -8,9 +8,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -51,7 +49,7 @@ public class ScheduleJobsIntegrationTest {
 
         // given
         Boolean headLine = TRUE;
-        Stream<Job> jobs = DataUtils.readInputtoStream(fName, STR_TO_JOB_FUNCTION, headLine);
+        Stream<Job> jobs = DataUtils.readToStream(fName, STR_TO_JOB_FUNCTION, headLine);
         // when
         final long completionCost = algo.compute(jobs);
         // then
@@ -63,7 +61,7 @@ public class ScheduleJobsIntegrationTest {
 
         // given
         Boolean headLine = TRUE;
-        List<Job> jobs = DataUtils.readInputToList(fName, STR_TO_JOB_FUNCTION, headLine);
+        List<Job> jobs = DataUtils.readToList(fName, STR_TO_JOB_FUNCTION, headLine);
         // when
         final long completionCost = algo.compute(jobs);
         // then
