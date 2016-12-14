@@ -1,4 +1,4 @@
-package my.algo.invernum;
+package my.algo.divideandconquer.invernum;
 
 import my.algo.base.DataUtils;
 import org.junit.Assert;
@@ -43,8 +43,7 @@ public class InvernumIntegrationTest {
     }
 
     @Test
-    public void testScheduleJobsStreamCase() throws Exception {
-
+    public void testInvernumStreamCase() throws Exception {
         // given
         Boolean headLine = FALSE;
         Stream<Preference> prefs = DataUtils.readToStream(fName, STR_TO_PREFERENCE_FUNCTION, headLine);
@@ -55,13 +54,24 @@ public class InvernumIntegrationTest {
     }
 
     @Test
-    public void testScheduleJobsListCase() throws Exception {
-
+    public void testInvernumListCase() throws Exception {
         // given
         Boolean headLine = FALSE;
         List<Preference> prefs = DataUtils.readToList(fName, STR_TO_PREFERENCE_FUNCTION, headLine);
         // when
         final long invCount = algo.compute(prefs);
+        // then
+        Assert.assertEquals(expectedInvCount, invCount);
+    }
+
+    @Test
+    public void testInvernumArrayCase() throws Exception {
+        // given
+        Boolean headLine = FALSE;
+        Preference[] prefsArray =
+                DataUtils.readToArray(fName, STR_TO_PREFERENCE_FUNCTION, headLine);
+        // when
+        final long invCount = algo.compute(prefsArray);
         // then
         Assert.assertEquals(expectedInvCount, invCount);
     }

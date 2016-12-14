@@ -1,4 +1,4 @@
-package my.algo.invernum;
+package my.algo.divideandconquer.invernum;
 
 public class Preference {
     final private long value;
